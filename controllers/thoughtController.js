@@ -12,7 +12,7 @@ module.exports = {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No Thought is found" })
+          ? res.status(404).json({ message: "No Thoughts" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -32,7 +32,7 @@ module.exports = {
           ? res.status(404).json({
               message: "Thought created, but found no user with that ID",
             })
-          : res.json("Created the thought🎉")
+          : res.json("Created thought")
       )
       .catch((err) => {
         console.log(err);
@@ -48,7 +48,7 @@ module.exports = {
     )
       .then((thought) =>
         !Thought
-          ? res.status(404).json({ message: "No Thought with this id!" })
+          ? res.status(404).json({ message: "No thoughts" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -58,11 +58,11 @@ module.exports = {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No Thought with that ID" })
+          ? res.status(404).json({ message: "No thoughts" })
           : Thought.deleteMany({ _id: { $in: Thought.thoughts } })
       )
       .then(() =>
-        res.json({ message: "Thought and associated thoughts deleted!" })
+        res.json({ message: "Thought and thoughts deleted" })
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -75,7 +75,7 @@ module.exports = {
     )
       .then((thought) =>
         !Thought
-          ? res.status(404).json({ message: "No Thought with this id!" })
+          ? res.status(404).json({ message: "No thoughts" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -88,7 +88,7 @@ module.exports = {
     )
       .then((application) =>
         !application
-          ? res.status(404).json({ message: "No application with this id!" })
+          ? res.status(404).json({ message: "No application" })
           : res.json(application)
       )
       .catch((err) => res.status(500).json(err));

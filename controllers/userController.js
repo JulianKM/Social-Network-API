@@ -15,7 +15,7 @@ module.exports = {
     .populate('thoughts')
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "No user is found" })
+          ? res.status(404).json({ message: "No user" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -25,7 +25,7 @@ module.exports = {
     User.create(req.body)
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "No user is found" })
+          ? res.status(404).json({ message: "No user" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -39,7 +39,7 @@ module.exports = {
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "No user with this id!" })
+          ? res.status(404).json({ message: "No user" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -49,10 +49,10 @@ module.exports = {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No user with that ID' })
+          ? res.status(404).json({ message: 'No user' })
           : Thought.deleteMany({ _id: { $in: user.thoughts } })
       )
-      .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
+      .then(() => res.json({ message: 'User and thoughts deleted' }))
       .catch((err) => res.status(500).json(err));
   },
 //*add a friend
@@ -63,7 +63,7 @@ module.exports = {
       { runValidators: true, new: true })
       .then((user) =>
       !user
-        ? res.status(404).json({ message: "No user with this id!" })
+        ? res.status(404).json({ message: "No user" })
         : res.json(user)
     )
     .catch((err) => res.status(500).json(err));
@@ -75,7 +75,7 @@ module.exports = {
       { runValidators: true, new: true })
       .then((user) =>
       !user
-        ? res.status(404).json({ message: "No user with this id!" })
+        ? res.status(404).json({ message: "No user" })
         : res.json(user)
     )
     .catch((err) => res.status(500).json(err));
