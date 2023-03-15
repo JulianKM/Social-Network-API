@@ -5,7 +5,7 @@ const {isEmail} = require('validator')
 // Schema to create Post model
 const userSchema = new Schema(
   {
-    name: {type:String, unique:true, required:true, tri:true },
+    username: {type:String, unique:true, required:true, tri:true },
     email: {type:String, unique:true, required:true, validate: [ isEmail, 'invalid email' ]},
     thoughts: { type: Schema.Types.ObjectId, ref: 'thought' },
     friends:[{ type: Schema.Types.ObjectId, ref: 'user' }]
